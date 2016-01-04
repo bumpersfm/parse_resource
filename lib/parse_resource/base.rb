@@ -322,8 +322,6 @@ module ParseResource
       options[:content_type] ||= 'image/jpg' # TODO: Guess mime type here.
       file_instance = File.new(file_instance, 'rb') if file_instance.is_a? String
 
-      filename = filename.parameterize
-
       private_resource = RestClient::Resource.new "#{base_uri}/#{filename}", app_id, master_key
       private_resource.post(file_instance, options) do |resp, req, res, &block|
         return false if resp.code == 400
